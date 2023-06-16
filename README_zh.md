@@ -25,6 +25,8 @@ GPT Engineer 的设计旨在易于适应、扩展以及让你的智能代理按�
 - 编辑 `example/main_prompt` 通过一句话 Prompt 指定你想要构建的应用
 - 运行 `go run .`（注意后面的 `.` 不能省略）, 默认与 AI 交互的语言是英语, 你可以通过 `-lang` 参数进行切换，比如想要使用中文，则通过 `go run . -lang=Chinese` 启动应用即可
 
+<img width="720" alt="576c696d304e2a19085cfefdb49664a" src="https://github.com/geekr-dev/gpt-engineer/assets/114386672/3f54a31c-ede3-43a8-a883-b35424160aa3">
+
 **结果**:
 - 检查 `example/workspace/all_output.txt` 中生成的内容
 

@@ -1,0 +1,10 @@
+You almost always put different classes in different files
+
+Go toolbelt preferences:
+- go test
+- go modules
+- DB ORM: gorm
+- Web Framework: gin
+
+Your answers shoud follow the language preferences below:
+- {{.lang}}

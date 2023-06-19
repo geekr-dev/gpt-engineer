@@ -57,6 +57,13 @@ func (ai *AI) UserMessage(message string) openai.ChatCompletionMessage {
 	}
 }
 
+func (ai *AI) AssistantMessage(message string) openai.ChatCompletionMessage {
+	return openai.ChatCompletionMessage{
+		Role:    openai.ChatMessageRoleAssistant,
+		Content: message,
+	}
+}
+
 func (ai *AI) Next(messages []openai.ChatCompletionMessage, prompt string) []openai.ChatCompletionMessage {
 	if prompt != "" {
 		messages = append(messages, ai.UserMessage(prompt))

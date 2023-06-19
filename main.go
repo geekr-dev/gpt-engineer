@@ -13,12 +13,14 @@ var (
 	model       string
 	lang        string
 	temperature float64
+	steps       string
 )
 
 func init() {
 	flag.StringVar(&model, "model", defaultModel, "The model to use")
 	flag.Float64Var(&temperature, "temperature", defaultTemperature, "The temperature to use")
 	flag.StringVar(&lang, "lang", defaultLang, "The language to use")
+	flag.StringVar(&steps, "steps", "default", "The steps to run")
 }
 
 func main() {
@@ -29,7 +31,7 @@ func main() {
 	rootPath, _ := filepath.Abs("./")
 	dbs := NewDBs(rootPath)
 
-	for _, step := range STEPS {
+	for _, step := range STEPS[steps] {
 		messages := step(ai, dbs)
 
 		pc := runtime.FuncForPC(reflect.ValueOf(step).Pointer())

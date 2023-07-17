@@ -24,9 +24,23 @@ type AI struct {
 }
 
 func NewAI(model string, temperature float64, lang string) *AI {
-	client := openai.NewClient(os.Getenv("OPENAI_API_KEY"))
+	var clientConfig openai.ClientConfig
+	apiKey := os.Getenv("OPENAI_API_KEY")
+	apiBase := os.Getenv("OPENAI_API_BASE")
+	if apiBase == "" {
+		clientConfig = openai.DefaultConfig(apiKey)
+	} else {
+		clientConfig = openai.DefaultAzureConfig(apiKey, apiBase)
+	}
+	client := openai.NewClientWithConfig(clientConfig)
 	ai := &AI{model: model, client: client, temperature: temperature, lang: lang}
-	_, err := client.GetModel(context.Background(), "gpt-4")
+
+	// Azure uses deployments and is not exposed in the openai api so model is assumed to be okay
+	if clientConfig.APIType == openai.APITypeAzure {
+		return ai
+	}
+
+	_, err := client.GetModel(context.Background(), model)
 	if err != nil {
 		fmt.Println("Model gpt-4 not available for provided api key reverting to gpt-3.5.turbo. Sign up for the gpt-4 wait list here: https://openai.com/waitlist/gpt-4-api")
 		ai.model = "gpt-3.5-turbo"

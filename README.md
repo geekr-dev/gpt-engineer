@@ -20,19 +20,26 @@ GPT Engineer is made to be easy to adapt, extend, and make your agent learn how 
 
 ## Usage
 
-**Setup**:
+### Setup:
 
+**OpenAI**
 - `go mod tidy`
 - `export OPENAI_API_KEY=[your api key]` with a key that has GPT4 access, if you don't have GPT4 access, then it will use GPT-3.5 as a fallback.
 
-**Run**:
+**Azure**
+- `export OPENAI_BASE=[your Azure OpenAI endpoint]` should be _https://[deployment name].openai.azure.com/_
+
+### Run:
 - Edit `example/main_prompt` to specify what you want to build
 - Run `go run .`, default language is English, if you want to use other language, and `-lang` argument like `go run . -lang=Chinese`
 
-**Results**:
+**(optional) Azure**
+- use the argument `-model [your deployment name]`
+
+### Results:
 - Check the generated files in `example/workspace`
 
-### Limitations
+## Limitations
 
 Implementing additional chain of thought prompting, e.g. [Reflexion](https://github.com/noahshinn024/reflexion), should be able to make it more reliable and not miss requested functionality in the main prompt.
 

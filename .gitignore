@@ -1,2 +1,6 @@
+# ide
+.vscode/
+.idea/
+
 example/memory
 example/workspace
